@@ -2,51 +2,43 @@ import fetch from 'isomorphic-fetch'
 
 const API_KEY = 'CdRKiCMbTnt9CkZTZ0lGukSczk6iT4Z6';
 
-export const LOADING_ITEMS = 'LOADING_ITEMS';
-export const RECEIVE_POSTS = 'RECEIVE_POSTS';
+export const FETCH_DATA_REQUEST = 'FETCH_DATA_REQUEST';
+export const FETCH_DATA_FAILURE = 'FETCH_DATA_FAILURE';
+export const FETCH_DATA_SUCCESS = 'FETCH_DATA_SUCCESS';
 
-export const SET_ERROR = 'SET_ERROR';
-
-export function setError( error ) {
+function fetchDataRequest() {
     return {
-        type: SET_ERROR,
-        error
+        type: FETCH_DATA_REQUEST
     }
 }
 
-export function clearError() {
+function fetchDataFailure() {
     return {
-        type: SET_ERROR,
-        error: ''
+        type: FETCH_DATA_FAILURE
     }
 }
 
-function loadingItems( ) {
+function fetchDataSuccess( items ) {
     return {
-        type: LOADING_ITEMS
-    }
-}
-
-function receivePosts( search, movies ) {
-    return {
-        type: RECEIVE_POSTS,
-        search,
-        posts: movies
+        type: FETCH_DATA_SUCCESS,
+        items
     }
 }
 
 export function fetchMovies( search ) {
     return dispatch => {
-        dispatch(loadingItems());
+        dispatch(fetchDataRequest());
         return fetch(`https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&q=${search}`)
             .then(response => response.json())
             .then(json => {
                 if (json.meta.msg === 'OK') {
-                    dispatch(receivePosts(search, json.data))
+                    dispatch(fetchDataSuccess(json.data))
                 } else {
-                    dispatch(setError('Error during loading'));
-                    dispatch(receivePosts(search, []))
+                    dispatch(fetchDataFailure())
                 }
+            })
+            .catch(() => {
+                dispatch(fetchDataFailure());
             })
     }
 }

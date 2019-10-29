@@ -1,20 +1,11 @@
 import { combineReducers } from 'redux'
 import {
-    LOADING_ITEMS,
-    RECEIVE_POSTS,
-    SET_ERROR
+    FETCH_DATA_REQUEST,
+    FETCH_DATA_SUCCESS,
+    FETCH_DATA_FAILURE
 } from './actions'
 
-function error( state = '', action ) {
-    switch ( action.type ) {
-        case SET_ERROR:
-            return action.error
-        default:
-            return state
-    }
-}
-
-function postsBySearch(
+function itemsBySearch(
     state = {
         isFetching: false,
         items: []
@@ -22,16 +13,22 @@ function postsBySearch(
     action
 ) {
     switch ( action.type ) {
-        case LOADING_ITEMS:
+        case FETCH_DATA_REQUEST:
             return {
                 ...state,
                 isFetching: true
             };
-        case RECEIVE_POSTS:
+        case FETCH_DATA_SUCCESS:
             return {
                 ...state,
                 isFetching: false,
-                items: action.posts
+                items: action.items
+            };
+        case FETCH_DATA_FAILURE:
+            return {
+                ...state,
+                isFetching: false,
+                items: []
             };
         default:
             return state;
@@ -39,8 +36,7 @@ function postsBySearch(
 }
 
 const rootReducer = combineReducers({
-    postsBySearch,
-    error
-})
+    itemsBySearch
+});
 
 export default rootReducer

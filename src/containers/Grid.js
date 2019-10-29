@@ -10,40 +10,29 @@ const containerStyle = {
 
 class Grid extends Component {
     render() {
-        const { posts, isFetching, error } = this.props
+        const { items, isFetching } = this.props;
         return (
             <div style={containerStyle}>
-                {isFetching && posts.length === 0 && <h2>Loading...</h2>}
-                {error && <h2>{error}</h2>}
-                {posts.length > 0 &&
-                <div>
-                    <Movies items={posts}/>
-                </div>}
+                {isFetching ?
+                    <h2>Loading...</h2> :
+                    <Movies items={items}/>
+                }
             </div>
         )
     }
 }
 
 Grid.propTypes = {
-    error: PropTypes.string.isRequired,
-    posts: PropTypes.array.isRequired,
+    items: PropTypes.array.isRequired,
     isFetching: PropTypes.bool.isRequired,
     dispatch: PropTypes.func.isRequired
-}
+};
 
 function mapStateToProps( state ) {
-    const { postsBySearch, error } = state
-    const {
-        isFetching,
-        items: posts
-    } = postsBySearch || {
-        error: '',
-        isFetching: false,
-        items: []
-    }
+    const { itemsBySearch: { items, isFetching } } = state;
+
     return {
-        error,
-        posts,
+        items,
         isFetching
     }
 }

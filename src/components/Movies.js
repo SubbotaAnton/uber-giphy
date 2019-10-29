@@ -20,13 +20,20 @@ const itemStyle = {
 
 export default class Movies extends Component {
     render() {
+        const { items } = this.props;
+        if (items.length === 0) {
+            return (
+                <div>There is no result</div>
+            )
+        }
+
         return (
             <ul style={listStyle}>
-                {this.props.items.map(( post, i ) => {
+                {items.map(( post, i ) => {
                     const { title, images: { fixed_height_downsampled: { url } } } = post;
                     return <li key={i} style={itemStyle}>
                         <h2>{title}</h2>
-                        <img src={url} alt="" height={200} />
+                        <img src={url} alt="" height={200}/>
                     </li>
                 })}
             </ul>
@@ -36,4 +43,4 @@ export default class Movies extends Component {
 
 Movies.propTypes = {
     items: PropTypes.array.isRequired
-}
+};
