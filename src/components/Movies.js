@@ -22,7 +22,7 @@ export default class Movies extends Component {
     render() {
         return (
             <ul style={listStyle}>
-                {this.props.posts.map(( post, i ) => {
+                {this.props.items.map(( post, i ) => {
                     const { title, images: { fixed_height_downsampled: { url } } } = post;
                     return <li key={i} style={itemStyle}>
                         <h2>{title}</h2>
@@ -35,5 +35,5 @@ export default class Movies extends Component {
 }
 
 Movies.propTypes = {
-    posts: PropTypes.array.isRequired
+    items: PropTypes.array.isRequired
 }
