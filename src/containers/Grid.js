@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
-import Movies from '../components/Movies'
+import List from '../components/List'
 
 const containerStyle = {
     padding: '20px',
@@ -10,12 +10,12 @@ const containerStyle = {
 
 class Grid extends Component {
     render() {
-        const { items, isFetching } = this.props;
+        const { items, pagination: { total_count }, isFetching } = this.props;
         return (
             <div style={containerStyle}>
                 {isFetching ?
                     <h2>Loading...</h2> :
-                    <Movies items={items}/>
+                    <List items={items} totalCount={total_count}/>
                 }
             </div>
         )
@@ -29,10 +29,11 @@ Grid.propTypes = {
 };
 
 function mapStateToProps( state ) {
-    const { itemsBySearch: { items, isFetching } } = state;
+    const { items: { data: { items, pagination }, isFetching } } = state;
 
     return {
         items,
+        pagination,
         isFetching
     }
 }

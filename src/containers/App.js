@@ -7,7 +7,7 @@ export default class App extends Component {
         return (
             <Fragment>
                 <Search/>
-                <Grid />
+                <Grid/>
             </Fragment>
         )
     }
