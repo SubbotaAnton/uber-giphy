@@ -3,6 +3,7 @@ import PropTypes from 'prop-types'
 import { connect } from 'react-redux'
 import List from '../components/List'
 import { updateItems } from "../actions";
+import InfiniteScroll from 'react-infinite-scroller';
 
 const containerStyle = {
     padding: '20px',
@@ -20,15 +21,19 @@ class Grid extends Component {
     }
 
     render() {
-        const { items, pagination: { total_count }, isFetching } = this.props;
+        const { items, pagination: { total_count }, isFetching, completed } = this.props;
         return (
             <div style={containerStyle}>
                 {isFetching ?
                     <h2>Loading...</h2> :
-                    <>
+                    // I did use InfiniteScroll plugin because:
+                    // 1) in real life best practice is use ready-to-use plugins,
+                    // especially in case they are lightweight and are good match
+                    // 2) I checked code of this plugin, it's pretty easy, so I can reproduce this code here in
+                    // the project, but I think it wasn't required
+                    <InfiniteScroll hasMore={!completed} initialLoad={false} loadMore={this.handleContinueSearch}>
                         <List items={items} totalCount={total_count}/>
-                        <button onClick={this.handleContinueSearch}>Continue search</button>
-                    </>
+                    </InfiniteScroll>
                 }
             </div>
         )

@@ -1,7 +1,4 @@
-import { combineReducers } from 'redux'
 import {
-    SET_SEARCH,
-
     FETCH_DATA_REQUEST,
     FETCH_DATA_SUCCESS,
     FETCH_DATA_FAILURE,
@@ -9,7 +6,7 @@ import {
     UPDATE_DATA_REQUEST,
     UPDATE_DATA_SUCCESS,
     UPDATE_DATA_FAILURE,
-} from './actions'
+} from '../actions'
 
 const initialState = {
     isFetching: false,
@@ -21,18 +18,6 @@ const initialState = {
         offset: 0
     }
 };
-
-function search( state = { value : ''}, action ) {
-    switch ( action.type ) {
-        case SET_SEARCH:
-            return {
-                ...state,
-                value: action.value
-            };
-        default:
-            return state;
-    }
-}
 
 function items( state = initialState, action ) {
     switch ( action.type ) {
@@ -89,9 +74,4 @@ function items( state = initialState, action ) {
     }
 }
 
-const rootReducer = combineReducers({
-    search,
-    items
-});
-
-export default rootReducer
+export default items

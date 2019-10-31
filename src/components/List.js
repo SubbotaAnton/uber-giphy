@@ -27,9 +27,12 @@ export default class List extends Component {
 
         return (
             <ul style={listStyle}>
-                {items.map(( post ) => {
-                    const { title, id, images: { fixed_width_still: { url } } } = post;
-                    return <Item key={id} title={title} url={url}/>
+                {items.map(( post, index ) => {
+                    const { title, images: { fixed_width_still: { url } } } = post;
+                    // TODO better to use unique id here,
+                    // but for some reason sometimes there are duplicates for that unique id
+                    // so until we drag-and-drop that elements it's good enough to use index
+                    return <Item key={index} title={title} url={url}/>
                 })}
             </ul>
         )

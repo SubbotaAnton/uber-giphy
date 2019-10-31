@@ -85,8 +85,8 @@ export function loadItems( search ) {
 
 export function updateItems() {
     return ( dispatch, getState ) => {
-        const { items: { data: { pagination, offset } }, search: { value } } = getState();
-        const toLimit = pagination.total_count - offset;
+        const { items: { data: { pagination: { total_count = Number.POSITIVE_INFINITY}, offset } }, search: { value } } = getState();
+        const toLimit = total_count - offset;
         const limit = LIMIT < toLimit ? LIMIT : toLimit;
         const url = `https://api.giphy.com/v1/gifs/search?api_key=${API_KEY}&limit=${limit}&offset=${offset}&q=${value}`;
         return loading(url, dispatch, updateDataRequest, updateDataSuccess, updateDataFailure);
