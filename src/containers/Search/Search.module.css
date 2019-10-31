@@ -1,0 +1,28 @@
+.Container {
+    max-width: 1040px;
+    display: flex;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 20px;
+    margin: 0 auto;
+}
+
+.Input {
+    height: 52px;
+    box-sizing: border-box;
+    letter-spacing: 1px;
+    font-size: 18px;
+    padding: 0 17px;
+    width: 100%;
+    border: none;
+}
+
+.Button {
+    cursor: pointer;
+    height: 52px;
+    width: 52px;
+    border: none;
+    box-sizing: border-box;
+    background: url('./assets/search-icon.svg') no-repeat center center #c9c9c9
+}
