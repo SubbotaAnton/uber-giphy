@@ -2,7 +2,6 @@ import {
     SET_SEARCH,
 } from '../actions/actions'
 
-
 function search( state = { value : ''}, action ) {
     switch ( action.type ) {
         case SET_SEARCH:
@@ -15,4 +14,4 @@ function search( state = { value : ''}, action ) {
     }
 }
 
-export default search
+export default search;
