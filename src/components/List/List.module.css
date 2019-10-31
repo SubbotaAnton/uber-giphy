@@ -1,0 +1,13 @@
+.List {
+    display: flex;
+    list-style-type: none;
+    justify-content: space-between;
+    flex-direction: column;
+    margin: 0;
+    padding: 0;
+}
+
+.NoResult {
+    text-align: left;
+    color: white;
+}

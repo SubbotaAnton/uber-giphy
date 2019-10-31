@@ -1,6 +1,6 @@
 import {
     SET_SEARCH,
-} from '../actions'
+} from '../actions/actions'
 
 
 function search( state = { value : ''}, action ) {

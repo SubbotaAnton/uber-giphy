@@ -1,6 +1,6 @@
 import fetch from 'isomorphic-fetch'
 
-import { API_KEY, LIMIT } from './config'
+import { API_KEY, LIMIT } from '../config'
 
 export const SET_SEARCH = 'SET_SEARCH';
 

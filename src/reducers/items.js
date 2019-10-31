@@ -6,7 +6,7 @@ import {
     UPDATE_DATA_REQUEST,
     UPDATE_DATA_SUCCESS,
     UPDATE_DATA_FAILURE,
-} from '../actions'
+} from '../actions/actions'
 
 const initialState = {
     isFetching: false,
