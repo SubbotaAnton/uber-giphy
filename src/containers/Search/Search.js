@@ -4,7 +4,8 @@ import { loadItems, updateSearch } from '../../actions/actions';
 import PropTypes from "prop-types";
 import styles from './Search.module.css';
 
-class Search extends Component {
+// Use named export for unconnected component (for tests)
+export class Search extends Component {
     constructor( props ) {
         super(props);
         this.onSearch = this.onSearch.bind(this);
@@ -46,14 +47,14 @@ class Search extends Component {
 
 Search.propTypes = {
     value: PropTypes.string.isRequired,
+    dispatch: PropTypes.func.isRequired
 };
 
 function mapStateToProps( state ) {
-    const { search: { value } } = state;
-
     return {
-        value
+        value: state.search.value
     }
 }
 
+// Use default export for the connected component (for app)
 export default connect(mapStateToProps)(Search)

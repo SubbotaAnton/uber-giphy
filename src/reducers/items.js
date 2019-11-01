@@ -30,6 +30,9 @@ function items( state = initialState, action ) {
         case FETCH_DATA_SUCCESS:
             return {
                 ...state,
+                // also possible to use library Reselect to compute derived data
+                // but we don't need it really here
+                // memoized also is not very helpful here
                 completed: action.items.length === action.pagination.total_count,
                 isFetching: false,
                 data: {

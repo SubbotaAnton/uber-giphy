@@ -4,12 +4,9 @@ import Item from '../Item/Item'
 import styles from './List.module.css'
 
 function List (props) {
-    const { items, totalCount } = props;
-    if (typeof totalCount === 'undefined') {
-        return null;
-    }
+    const { items } = props;
 
-    if (totalCount === 0) {
+    if (items.length === 0) {
         return (
             <div className={styles.NoResult}>There is no result</div>
         )
@@ -30,8 +27,7 @@ function List (props) {
 }
 
 List.propTypes = {
-    items: PropTypes.array.isRequired,
-    totalCount: PropTypes.number
+    items: PropTypes.array.isRequired
 };
 
 export default List;
