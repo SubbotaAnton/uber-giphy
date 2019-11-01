@@ -1,5 +1,5 @@
 import React from 'react';
-import { mount, shallow } from 'enzyme';
+import { mount } from 'enzyme';
 import { Grid } from './Grid';
 import { item1, item2, item3 } from "../../components/Item/mocks/items";
 import List from "../../components/List/List";
